@@ -5,7 +5,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 import datetime
 
 
-def working_years():
+def count_working_years():
     today = datetime.date.today()
 
     def make_year_agree_with_number(number: int) -> str:
@@ -30,7 +30,7 @@ def prepare_page(wine_list_file_name: str):
     template = env.get_template('template.html')
 
     rendered_page = template.render(
-        years=working_years(),
+        years=count_working_years(),
         wine_list=get_wine_list(wine_list_file_name)
     )
 
