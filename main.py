@@ -46,12 +46,9 @@ def main():
         help='Имя файла, в котором хранятся данные винной карты. По умолчанию - wine_list.xlsx'
     )
     args = parser.parse_args()
-    try:
-        prepare_page(wine_list_file_name=args.wine_list)
-        server = HTTPServer(('127.0.0.1', 8000), SimpleHTTPRequestHandler)
-        server.serve_forever()
-    except Exception as ex:
-        print(ex)
+    prepare_page(wine_list_file_name=args.wine_list)
+    server = HTTPServer(('127.0.0.1', 8000), SimpleHTTPRequestHandler)
+    server.serve_forever()
 
 
 if __name__ == '__main__':
