@@ -30,7 +30,7 @@ def prepare_page(wine_list_file_name: str):
     template = env.get_template('template.html')
 
     rendered_page = template.render(
-        years=working_years,
+        years=working_years(),
         wine_list=get_wine_list(wine_list_file_name)
     )
 
