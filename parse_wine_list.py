@@ -6,8 +6,8 @@ def _get_records(file_name: str) -> dict:
     return wine_data.to_dict(orient='index')
 
 
-def get_wine_list(wine_list_file_name: str) -> dict[str:list]:
-    wine_records = _get_records(wine_list_file_name)
+def get_wines(wine_table_file_name: str) -> dict[str:list]:
+    wine_records = _get_records(wine_table_file_name)
     categories = set(record['Категория'] for record in wine_records.values())
     wines = {category: [] for category in categories}
     for _, wine_record in wine_records.items():

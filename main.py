@@ -1,6 +1,6 @@
 import argparse
 from http.server import HTTPServer, SimpleHTTPRequestHandler
-from parse_wine_list import get_wine_list
+from parse_wine_list import get_wines
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import datetime
 
@@ -21,7 +21,7 @@ def count_working_years():
     return make_year_agree_with_number(today.year - 1920)
 
 
-def prepare_page(wine_list_file_name: str):
+def prepare_page(wine_table_file_name: str):
     env = Environment(
         loader=FileSystemLoader('.'),
         autoescape=select_autoescape(['html', 'xml'])
@@ -31,7 +31,7 @@ def prepare_page(wine_list_file_name: str):
 
     rendered_page = template.render(
         years=count_working_years(),
-        wine_list=get_wine_list(wine_list_file_name)
+        wine_table=get_wines(wine_table_file_name)
     )
 
     with open('index.html', 'w', encoding="utf8") as file:
@@ -41,12 +41,12 @@ def prepare_page(wine_list_file_name: str):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--wine_list",
-        default='wine_list.xlsx',
-        help='Имя файла, в котором хранятся данные винной карты. По умолчанию - wine_list.xlsx'
+        "--wine_table",
+        default='wine_table.xlsx',
+        help='Имя файла, в котором хранятся данные винной карты. По умолчанию - wine_table.xlsx'
     )
     args = parser.parse_args()
-    prepare_page(wine_list_file_name=args.wine_list)
+    prepare_page(wine_table_file_name=args.wine_table)
     server = HTTPServer(('127.0.0.1', 8000), SimpleHTTPRequestHandler)
     server.serve_forever()
 
