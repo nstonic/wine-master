@@ -7,13 +7,13 @@ import datetime
 
 def make_year_agree_with_number(number: int) -> str:
     if 11 <= number % 100 <= 19:
-        return f"{number} лет"
+        return f'{number} лет'
     elif number % 10 in [2, 3, 4]:
-        return f"{number} года"
+        return f'{number} года'
     elif number % 10 == 1:
-        return f"{number} год"
+        return f'{number} год'
     else:
-        return f"{number} лет"
+        return f'{number} лет'
 
 
 def count_working_years() -> str:
@@ -35,14 +35,14 @@ def prepare_page(wine_table_file_name: str):
         wine_table=get_wines(wine_table_file_name)
     )
 
-    with open('index.html', 'w', encoding="utf8") as file:
+    with open('index.html', 'w', encoding='utf8') as file:
         file.write(rendered_page)
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--wine_table",
+        '--wine_table',
         default='wine_table.xlsx',
         help='Имя файла, в котором хранятся данные винной карты. По умолчанию - wine_table.xlsx'
     )
