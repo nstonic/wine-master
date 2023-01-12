@@ -5,19 +5,19 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 import datetime
 
 
+def make_year_agree_with_number(number: int) -> str:
+    if 11 <= number % 100 <= 19:
+        return f"{number} лет"
+    elif number % 10 in [2, 3, 4]:
+        return f"{number} года"
+    elif number % 10 == 1:
+        return f"{number} год"
+    else:
+        return f"{number} лет"
+
+
 def count_working_years():
     today = datetime.date.today()
-
-    def make_year_agree_with_number(number: int) -> str:
-        if 11 <= number % 100 <= 19:
-            return f"{number} лет"
-        elif number % 10 in [2, 3, 4]:
-            return f"{number} года"
-        elif number % 10 == 1:
-            return f"{number} год"
-        else:
-            return f"{number} лет"
-
     return make_year_agree_with_number(today.year - 1920)
 
 
