@@ -1,6 +1,6 @@
 import argparse
 from http.server import HTTPServer, SimpleHTTPRequestHandler
-from parse_wine_list import get_wines
+from parse_wine_table import get_wines
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import datetime
 
