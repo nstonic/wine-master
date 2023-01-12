@@ -6,7 +6,7 @@ def get_wines(wine_table_file_name: str) -> dict[str:list]:
     wine_records = wine_table.to_dict(orient='index')
     categories = wine_table['Категория'].unique()
     wines = {category: [] for category in categories}
-    for _, wine_record in wine_records.items():
+    for wine_record in wine_records.values():
         wine = {
             'title': wine_record['Название'],
             'grape': wine_record['Сорт'],
