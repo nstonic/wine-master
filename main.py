@@ -16,9 +16,10 @@ def make_year_agree_with_number(number: int) -> str:
         return f"{number} лет"
 
 
-def count_working_years():
+def count_working_years() -> str:
     today = datetime.date.today()
-    return make_year_agree_with_number(today.year - 1920)
+    start_year = 1920
+    return make_year_agree_with_number(today.year - start_year)
 
 
 def prepare_page(wine_table_file_name: str):
